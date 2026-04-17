@@ -9,22 +9,18 @@ pipeline {
             }
         }
 
-        // ✅ NEW STAGE - SonarQube Analysis
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh '''
-                        sonar-scanner \
+                    sh "${tool 'SonarScanner'}/bin/sonar-scanner \
                           -Dsonar.projectKey=abc-backend \
-                          -Dsonar.projectName="ABC Backend" \
+                          -Dsonar.projectName='ABC Backend' \
                           -Dsonar.sources=. \
-                          -Dsonar.exclusions=node_modules/**,**/*.test.js
-                    '''
+                          -Dsonar.exclusions=node_modules/**,**/*.test.js"
                 }
             }
         }
 
-        // ✅ NEW STAGE - Quality Gate Check
         stage('Quality Gate') {
             steps {
                 timeout(time: 2, unit: 'MINUTES') {
