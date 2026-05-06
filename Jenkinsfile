@@ -4,7 +4,7 @@ pipeline {
     environment {
         APP_NAME       = 'abc-backend'
         AWS_REGION     = 'us-east-1'
-        AWS_ACCOUNT_ID = '841162684034'
+        AWS_ACCOUNT_ID = '652086758047'
         ECR_REGISTRY   = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
         IMAGE_TAG      = "${env.BUILD_NUMBER}"
         FULL_IMAGE     = "${ECR_REGISTRY}/${APP_NAME}:${IMAGE_TAG}"
@@ -14,7 +14,7 @@ pipeline {
 
         stage('Clone Backend Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/Siva290395/abc-backend.git'
+                git branch: 'main', url: 'https://github.com/kavink112/abc-backend12.git'
             }
         }
 
